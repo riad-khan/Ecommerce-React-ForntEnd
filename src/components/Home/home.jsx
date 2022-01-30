@@ -1,6 +1,6 @@
 import React from 'react';
-import Featured from '../layout/Featured';
-import Slider from '../layout/Slider';
+import Featured from '../layout/Featured.jsx';
+import Slider from '../layout/Slider.jsx';
 
 
 

@@ -1,13 +1,13 @@
 import * as actionTypes from '../actionTypes';
 import axios from 'axios';
-import { API } from '../../config/config'
+import { API } from '../../config/config';
 
-export const authSuccess = (token, userId) => {
+
+export const authSuccess = (userDate) => {
     return {
         type: actionTypes.AUTH_SUCCESS,
         payload: {
-            token: token,
-            userId: userId,
+            userData : userDate
         }
     }
 };
@@ -45,14 +45,15 @@ export const loginUser = (email, password) => dispatch => {
     })
         .then(response => {
             dispatch(authLoading(false));
-            localStorage.setItem('token', response.data.token);
+            localStorage.setItem('token', JSON.stringify(response.data.token));
             localStorage.setItem('userId', response.data.id);
-            dispatch(authSuccess(response.data.token, response.data.id))
+            dispatch(authSuccess(response.data))
             dispatch(redirect(true));
 
         })
         .catch(error => {
             dispatch(authLoading(false));
             dispatch(authFailed(error.response.data))
+            console.log(error.response.data)
         })
 } 

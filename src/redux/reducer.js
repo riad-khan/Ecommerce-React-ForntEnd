@@ -1,10 +1,17 @@
 import * as actionTypes from './actionTypes';
 const initialState = {
-    token: null,
-    userId: null,
+
+    user: [{
+        token: null,
+        id: null,
+        name: null,
+        role: null,
+    }],
+    authMsg: null,
     authError: null,
     authLoading: null,
-    redirect : false,
+    redirect: false,
+    authSuccess: null,
 }
 
 export const reducer = (state = initialState, action) => {
@@ -12,9 +19,10 @@ export const reducer = (state = initialState, action) => {
         case actionTypes.AUTH_SUCCESS:
             return {
                 ...state,
-                token: action.payload.token,
-                userId: action.payload.userId,
+                user: action.payload,
+                authMsg : action.payload.message,
                 authLoading: action.payload,
+                authSuccess: true,
             }
         case actionTypes.AUTH_LOADING:
             return {
