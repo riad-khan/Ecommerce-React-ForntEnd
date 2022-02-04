@@ -1,18 +1,20 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+
 import { Link } from 'react-router-dom';
 import {isAuthenticated ,userInfo} from '../../helpers/auth';
 
 
 
-
 class Header extends Component {
+    
+  
+ 
     render() {
         let loginUrl = {}
-        const token = JSON.parse(localStorage.getItem('token'))
-        if (token) {
+        
+        if (isAuthenticated() === true) {
             loginUrl = (
-                <li className="list-inline-item"><Link to='/profile'><i className="ti-user mr-2"></i>{userInfo().name}</Link></li>
+                <li className="list-inline-item"><Link><i className="ti-user mr-2"></i>{userInfo().name}</Link></li>
             )
         } else {
             loginUrl = (
@@ -20,6 +22,7 @@ class Header extends Component {
             )
 
         }
+       
 
         return (
             <div>
@@ -37,7 +40,7 @@ class Header extends Component {
                             </div>
                             <div className="col-md-6 col-xs-6 d-none d-block-md">
                                 <ul className="list-inline list-item-style mt-0 float-right">
-                                    <li className="list-inline-item"><a href="#"><i className="ti-user mr-2"></i> My Account</a></li>
+                                    <li className="list-inline-item"><Link to='' ><i className="ti-user mr-2"></i> My Account</Link></li>
                                 </ul>
                             </div>
                             <div className="col-12 d-none d-lg-block">
@@ -70,7 +73,9 @@ class Header extends Component {
                                 </form>
                                 <a href="#" data-toggle="modal" data-target="#ModalCart" className="float-right text-center mt-1 ml-4 text-grey-800 position-relative"><i className="ti-shopping-cart font-lg"></i><span className="font-xssss fw-500 d-block lh-1">Cart</span> <span className="icon-count bg-current">3</span></a>
                                 <a href="#" className="float-right text-center mt-1 ml-4 text-grey-800 position-relative"><i className="ti-heart font-lg"></i><span className="font-xssss fw-500 d-block lh-1">Saved</span> <span className="icon-count bg-current">2</span></a>
-                                <a href="#" className="float-right d-none d-lg-block text-center mt-1 ml-4 text-grey-800"><i className="ti-user font-lg"></i><span className="font-xssss fw-500 d-block lh-1">Account</span></a>
+                             { isAuthenticated() &&(
+                                 <Link to='/profile'  className="float-right d-none d-lg-block text-center mt-1 ml-4 text-grey-800"><i className="ti-user font-lg"></i><span className="font-xssss fw-500 d-block lh-1">Account</span></Link>
+                             )}
                                 <button className="navbar-toggler float-right mt-1" type="button" data-toggle="modal" data-target="#ModalCategores">
                                     <span className="navbar-toggler-icon"></span>
                                 </button>

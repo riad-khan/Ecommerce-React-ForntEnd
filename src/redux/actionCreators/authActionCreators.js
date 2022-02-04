@@ -52,6 +52,7 @@ export const loginUser = (email, password) => dispatch => {
 
         })
         .catch(error => {
+          
             dispatch(authLoading(false));
             dispatch(authFailed(error.response.data))
             console.log(error.response.data)

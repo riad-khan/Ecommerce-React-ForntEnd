@@ -7,11 +7,17 @@ const initialState = {
         name: null,
         role: null,
     }],
+    categories: [{
+        name: null,
+        id: null,
+    }],
     authMsg: null,
     authError: null,
     authLoading: null,
-    redirect: false,
     authSuccess: null,
+    categoryLoading : null,
+    categoryError : null,
+
 }
 
 export const reducer = (state = initialState, action) => {
@@ -20,9 +26,10 @@ export const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 user: action.payload,
-                authMsg : action.payload.message,
+                authMsg: action.payload.message,
                 authLoading: action.payload,
                 authSuccess: true,
+
             }
         case actionTypes.AUTH_LOADING:
             return {
@@ -35,6 +42,23 @@ export const reducer = (state = initialState, action) => {
                 authLoading: action.payload,
                 authError: action.payload
             }
+        case actionTypes.CATEGORY_LOADED:
+            return {
+                ...state,
+                categories : action.payload,
+                categoryLoading : action.payload,
+            }
+        case actionTypes.CATEGORY_FAILED:
+            return{
+                ...state,
+                categoryError : action.payload,
+                categoryLoading : action.payload,
+            } 
+        case actionTypes.CATEGORY_LOADING:
+            return{
+                ...state,
+                categoryLoading : action.payload,
+            }   
         default:
             return state
     }

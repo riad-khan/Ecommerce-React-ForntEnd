@@ -2,8 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Alert } from 'reactstrap';
 import { loginUser } from '../../redux/actionCreators/authActionCreators';
-import { Rings  } from  'react-loader-spinner';
-import { Link } from 'react-router-dom';
+import { Rings } from 'react-loader-spinner';
+import { Link, Redirect } from 'react-router-dom';
+import { isAuthenticated } from '../../helpers/auth'
+
+
 
 
 
@@ -15,10 +18,10 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = state => {
     return {
         isLoading: state.authLoading,
-        success : state.authSuccess,
-        message : state.authMsg,
-        user : state.user,
-        error : state.authError,
+        success: state.authSuccess,
+        message: state.authMsg,
+        user: state.user,
+        error: state.authError,
     }
 }
 
@@ -28,7 +31,7 @@ class Login extends Component {
     state = {
         email: '',
         password: '',
-        alertOpen : true,
+        alertOpen: true,
     }
     inputHandler = (event) => {
 
@@ -37,21 +40,24 @@ class Login extends Component {
         })
 
     }
+    redirectUser = () => {
+        if (isAuthenticated()) return <Redirect to='/' />
+    }
     handleSubmit = (event) => {
         event.preventDefault();
         this.props.loginUser(this.state.email, this.state.password)
     };
-    toggleAlert = ()=>{
-        this.setState({alertOpen:true},()=>{
-            window.setTimeout(()=>{
-              this.setState({alertOpen:false})
-            },2000)
-          });
+    toggleAlert = () => {
+        this.setState({ alertOpen: true }, () => {
+            window.setTimeout(() => {
+                this.setState({ alertOpen: false })
+            }, 2000)
+        });
     }
-    render() {
 
+    render() {
         let error = null;
-        if(this.props.error !==null){
+        if (this.props.error !== null) {
             error = (
                 <Alert color='danger' isOpen={this.state.alertOpen}>{this.props.error}</Alert>
             )
@@ -59,12 +65,12 @@ class Login extends Component {
 
         let form = {}
         if (this.props.isLoading === true) {
-            form =( <Rings color='#1E74FD' width='100%' />)
+            form = (<Rings color='#1E74FD' width='100%' />)
         } else {
             form = (
                 <form onSubmit={this.handleSubmit}>
                     <h2>Login here</h2>
-                   
+
                     <div className="form-group icon-tab mb-3">
                         <input type="text" className="form-control h60 border-2 bg-color-none text-grey-700" name='email' value={this.state.email} onChange={this.inputHandler} placeholder='type your email' required />
                         <i className="ti-email text-grey-700 pr-0"></i>
@@ -75,9 +81,9 @@ class Login extends Component {
                     </div>
                     <button type='submit' onClick={this.toggleAlert} className='form-group col-lg-12 mt-3 btn btn-primary btn-lg' >Sign In</button>
                     <div className="form-check text-left mb-3">
-                       
+
                         <Link to='/sign-up' className='fw-600 font-xsss text-grey-700 mt-1'>New user ? Sign-up here</Link>
-                   
+
                         <a href="#" className="fw-600 font-xsss text-grey-700 mt-1 float-right">Forgot your Password?</a><br />
                         {/* <a href="#" className="form-control h60 bg-current text-white font-xss fw-500 border-2 border-0 p-0">Login</a> */}
 
@@ -85,7 +91,9 @@ class Login extends Component {
                 </form>
             )
         }
-        if(this.props.success)return window.location.href= '/'
+        if (this.props.success) {
+            window.location.href = '/'
+        }
 
 
         return (
@@ -99,10 +107,10 @@ class Login extends Component {
                 </div>
                 <div className='container'>
                     <div className="row justify-content-center ">
-                        
+
                         <div className='col-lg-6' style={{ marginTop: '30px' }}>
-                        {error}
-                        {form}
+                            {error}
+                            {form}
 
                         </div>
                     </div>
