@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { Component } from 'react';
 import { API } from '../../../config/config';
 import SideBar from '../../user/SideBar';
-import { createCategory } from './apiAdmin';
+import { createCategory } from '../../../api/apiAdmin';
 import { isAuthenticated, userInfo } from '../../../helpers/auth';
 import { Alert } from 'reactstrap';
 import { connect } from 'react-redux';
@@ -33,8 +33,8 @@ export class CreateCategory extends Component {
     componentDidMount() {
         this.props.fetchCategory();
     }
-    componentDidUpdate(prevProps,prevState){
-        if(prevProps.category !== this.props.category){
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps.category !== this.props.category) {
             this.props.fetchCategory()
         }
     }
@@ -93,18 +93,19 @@ export class CreateCategory extends Component {
             spinner = (<Rings color='#1E74FD' width='100%' />)
         }
 
-        const AllCategory = this.props.category.map(item => {
+        const AllCategory = this.props.category.map((item,i) => {
             return (
-                <tr>
+               
+                    <tr key={i}>
+                        <td className="product-headline text-left wide-column">
+                            <h3>
+                                <a href="#" className="text-grey-900 fw-600" >{item.name}</a>
+                            </h3>
+                        </td>
 
-                <td className="product-headline text-left wide-column">
-                    <h3>
-                        <a href="#" className="text-grey-900 fw-600">{item.name}</a>
-                    </h3>
-                </td>
-
-                <td className="product-remove text-right"><a href="#"><i className="ti-trash font-xs text-grey-500"></i></a> <a href="#"><i className="ti-eye ml-2 font-xs text-grey-500"></i></a><a href="#"><i className="ti-pencil ml-2 font-xs text-grey-500"></i></a></td>
-            </tr>
+                        <td className="product-remove text-right"><a href="#"><i className="ti-trash font-xs text-grey-500"></i></a> <a href="#"><i className="ti-eye ml-2 font-xs text-grey-500"></i></a><a href="#"><i className="ti-pencil ml-2 font-xs text-grey-500"></i></a></td>
+                    </tr>
+               
             )
         })
 
@@ -160,7 +161,7 @@ export class CreateCategory extends Component {
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                          
+
                                                             {AllCategory}
 
 

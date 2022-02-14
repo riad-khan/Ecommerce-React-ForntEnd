@@ -12,6 +12,11 @@ import AdminDashBoard from "./Admin/AdminDashBoard.jsx";
 import AdminRoutes from "./protectedRoutes/AdminRoutes.jsx";
 import { isAuthenticated } from "../helpers/auth.js";
 import CreateCategory from "./Admin/category/CreateCategory.jsx";
+import CreateProduct from "./Admin/product/CreateProduct.jsx";
+import ViewProducts from "./Admin/product/ViewProducts.jsx";
+import ProductDetails from "./Products/ProductDetails.jsx";
+import Shop from "./shop/Shop.jsx";
+
 
 
 
@@ -29,6 +34,8 @@ const Main = () => {
                 <Route path='/' exact component={Home} />
                 <Route path='/login' component={Login} />
                 <Route path='/sign-up' component={Register} />
+                <Route path='/product-details/:id' component={ProductDetails} />
+                <Route path='/shop' component={Shop} />
                 <PrivateRoute path='/user/dashboard' >
                     <UserDashBoard />
                 </PrivateRoute>
@@ -40,6 +47,12 @@ const Main = () => {
                 </AdminRoutes>
                 <AdminRoutes path='/create/category' >
                     <CreateCategory />
+                </AdminRoutes>
+                <AdminRoutes path='/create/product' >
+                    <CreateProduct />
+                </AdminRoutes>
+                <AdminRoutes path='/view/product' >
+                    <ViewProducts />
                 </AdminRoutes>
                 <Route path='*' component={NotFound} />
 

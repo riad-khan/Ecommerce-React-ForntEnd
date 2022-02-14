@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { Link } from 'react-router-dom';
 import {isAuthenticated ,userInfo} from '../../helpers/auth';
-
+import Logo from '../../assets/meme.png'
 
 
 class Header extends Component {
@@ -62,7 +62,7 @@ class Header extends Component {
                     <div className="container">
                         <div className="row">
                             <div className="col-xs-3 col-md-6 col-lg-2 col-xl-4 navbar pt-0">
-                                <a href="index.html" className="logo"><h1 className="fredoka-font ls-3 fw-700 text-current display1-size">Zipto</h1></a>
+                                <a href="index.html" className="logo"><h1 className="fredoka-font ls-3 fw-700 text-current display1-size"> OSBD</h1></a>
 
                             </div>
                             <div className="col-xs-9 col-md-6 col-lg-10 col-xl-8 text-right">
@@ -137,6 +137,7 @@ class Header extends Component {
                                         <li className="nav-item"><a className="nav-link" href="blog.html">Blog</a></li>
                                         <li className="nav-item"><a className="nav-link" href="about.html">About</a></li>
                                         <li className="nav-item"><a className="nav-link" href="contact.html">Contact</a></li>
+                                        <li className="nav-item"><Link className="nav-link" to='/shop'>Shop</Link></li>
                                         <li className="nav-item float-right pr-0"><a href="tel:(+1)866-540-3229" className="nav-link fw-500 font-xsss text-current d-block">Call us toll free:  (+1)866-540-3229</a></li>
                                     </ul>
                                 </div>

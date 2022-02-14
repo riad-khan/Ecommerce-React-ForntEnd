@@ -1,7 +1,7 @@
 import * as actionTypes from '../actionTypes';
 import axios from 'axios';
 import { API } from '../../config/config';
-import { getCategory } from '../../components/Admin/category/apiAdmin'
+import { getCategory } from '../../api/apiAdmin'
 
 export const categoryLoaded = data => {
     return {

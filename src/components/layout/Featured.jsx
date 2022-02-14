@@ -1,4 +1,10 @@
 import React from 'react';
+import phone1 from '../../assets/images/pp-20.png';
+import phone2 from '../../assets/images/pp-1.png';
+import phone3 from '../../assets/images/pp-16.png';
+import phone4 from '../../assets/images/pp-15.png';
+import phone5 from '../../assets/images/pp-17.png';
+import phone6 from '../../assets/images/pp-6.png';
 
 function Featured() {
     return <div>
@@ -12,7 +18,7 @@ function Featured() {
                         <div className="card w-100 border-0 mt-4">
                             <div className="row">
                                 <div className="float-left card-image w-25 p-2 text-center bg-greylight rounded-lg">
-                                    <a href="#"><img src="images/pp-20.png" alt="product-image" className="w45 mt-1" /></a>
+                                    <a href="#"><img src={phone1} alt="product-image" className="w45 mt-1" /></a>
                                 </div>
                                 <div className="float-left card-body w-75 pt-2 pb-0">
                                     <h4 className="fw-500 font-xsss text-grey-500">Phones</h4>
@@ -26,7 +32,7 @@ function Featured() {
                         <div className="card w-100 border-0 mt-4">
                             <div className="row">
                                 <div className="float-left card-image w-25 p-2 text-center bg-greylight rounded-lg">
-                                    <a href="#"><img src="images/pp-1.png" alt="product-image" className="w45 mt-1" /></a>
+                                    <a href="#"><img src={phone2} alt="product-image" className="w45 mt-1" /></a>
                                 </div>
                                 <div className="float-left card-body w-75 pt-2 pb-0">
                                     <h4 className="fw-500 font-xsss text-grey-500">Phones</h4>
@@ -42,7 +48,7 @@ function Featured() {
                         <div className="card w-100 border-0 mt-4">
                             <div className="row">
                                 <div className="float-left card-image w-25 p-2 text-center bg-greylight rounded-lg">
-                                    <a href="#"><img src="images/pp-16.png" alt="product-image" className="w45 mt-1" /></a>
+                                    <a href="#"><img  src={phone3} alt="product-image" className="w45 mt-1" /></a>
                                 </div>
                                 <div className="float-left card-body w-75 pt-2 pb-0">
                                     <h4 className="fw-500 font-xsss text-grey-500">Watch</h4>
@@ -57,7 +63,7 @@ function Featured() {
                         <div className="card w-100 border-0 mt-4">
                             <div className="row">
                                 <div className="float-left card-image w-25 p-2 text-center bg-greylight rounded-lg">
-                                    <a href="#"><img src="images/pp-15.png" alt="product-image" className="w45 mt-1" /></a>
+                                    <a href="#"><img  src={phone4} alt="product-image" className="w45 mt-1" /></a>
                                 </div>
                                 <div className="float-left card-body w-75 pt-2 pb-0">
                                     <h4 className="fw-500 font-xsss text-grey-500">Watch</h4>
@@ -72,7 +78,7 @@ function Featured() {
                         <div className="card w-100 border-0 mt-4">
                             <div className="row">
                                 <div className="float-left card-image w-25 p-2 text-center bg-greylight rounded-lg">
-                                    <a href="#"><img src="images/pp-17.png" alt="product-image" className="w45 mt-1" /></a>
+                                    <a href="#"><img  src={phone5} alt="product-image" className="w45 mt-1" /></a>
                                 </div>
                                 <div className="float-left card-body w-75 pt-2 pb-0">
                                     <h4 className="fw-500 font-xsss text-grey-500">Trimmer</h4>
@@ -86,7 +92,7 @@ function Featured() {
                         <div className="card w-100 border-0 mt-4">
                             <div className="row">
                                 <div className="float-left card-image w-25 p-2 text-center bg-greylight rounded-lg">
-                                    <a href="#"><img src="images/pp-6.png" alt="product-image" className="w45 mt-1" /></a>
+                                    <a href="#"><img  src={phone6} alt="product-image" className="w45 mt-1" /></a>
                                 </div>
                                 <div className="float-left card-body w-75 pt-2 pb-0">
                                     <h4 className="fw-500 font-xsss text-grey-500">Phones</h4>

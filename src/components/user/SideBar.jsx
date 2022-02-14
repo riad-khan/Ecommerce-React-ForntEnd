@@ -23,7 +23,8 @@ const SideBar = props => {
                 {dashboardUrl}
              
                {isAuthenticated() && userInfo().role ==='admin' ?  <li className={path === 'category'? 'd-block rounded-lg active' : 'd-block rounded-lg'}><Link to='/create/category'><i className="ti-pie-chart font-sm"></i><span>Category</span></Link></li> : ''}
-               
+               {isAuthenticated() && userInfo().role ==='admin' ?  <li className={path === 'product'? 'd-block rounded-lg active' : 'd-block rounded-lg'}><Link to='/create/product'><i className="ti-pie-chart font-sm"></i><span>Create Product</span></Link></li> : ''}
+               {isAuthenticated() && userInfo().role ==='admin' ?  <li className={path === '/view/product'? 'd-block rounded-lg active' : 'd-block rounded-lg'}><Link to='/view/product'><i className="ti-pie-chart font-sm"></i><span>View Product</span></Link></li> : ''}
                
 
                 <li className={path === 'profile'? 'd-block rounded-lg active' : 'd-block rounded-lg'}><Link to='/profile'><i className="ti-user font-sm"></i><span> Profile</span></Link></li>
