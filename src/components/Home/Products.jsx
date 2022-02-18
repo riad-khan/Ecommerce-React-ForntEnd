@@ -10,9 +10,12 @@ import { connect } from 'react-redux';
 import { fetchProducts } from '../../redux/actionCreators/productActionCreator';
 import { API } from '../../config/config';
 import { Link } from 'react-router-dom';
+import ProductModal from './ProductModal';
 const mapStateToProps = state => {
     return {
-        products: state.products
+        products: state.products,
+
+
     }
 }
 const mapDispatchToProps = dispatch => {
@@ -22,56 +25,66 @@ const mapDispatchToProps = dispatch => {
 }
 
 export class Products extends Component {
+    state = {
+        selectedProduct: null,
+    }
     componentDidMount = () => {
         this.props.fetchProducts();
     }
+    productsModal = (index) => {
+
+
+        this.setState({
+            selectedProduct: index,
+            isOpen: true
+        })
+
+    }
+    handleClose = (result) => {
+        if (result === true) {
+            this.setState({
+                selectedProduct: null,
+            })
+        }
+    }
     render() {
+
         const ProductSlide = this.props.products.map((product, i) => {
             return (
 
-                <SwiperSlide>
+                <>
+                    <SwiperSlide >
+
+                        <div className="container">
+                            <div className="row">
+
+                                <div className="col-lg-12">
 
 
-
-                    <div className="container">
-                        <div className="row">
-
-                            <div className="col-lg-12">
-
-                                <Link to={`/product-details/${product._id}`}>
-                                    <div>
-                                        <div className="col-md-12  border rounded-lg" >
+                                    <div key={i}>
+                                        <div className="col-md-12  border rounded-lg"  >
                                             <h4 className="fw-500 font-xsss text-grey-500 float-left mt-1">{product.category.name}</h4>
-                                            {/* <a href="#" className="float-right"><i className="ti-heart font-xss text-grey-500"></i></a>
-                                            <a href="#" className="float-right mr-3" data-toggle="modal" data-target="#ModalQuick"><i className="ti-eye font-xs text-grey-500"></i></a> */}
+                                            <a href="#" className="float-right"><i className="ti-heart font-xss text-grey-500"></i></a>
+                                            <a href="#" className="float-right mr-3" data-toggle="modal" onClick={this.productsModal.bind(this, i)} data-target="#ModalQuick"><i className="ti-eye font-xs text-grey-500"></i></a>
                                             <div className="clearfix"></div>
-                                            <img src={`${API}/product/photo/${product._id}`} style={{ height: '170px' }} alt="product-image" />
-                                            <h2 className="text-grey-800 fw-500 font-xsss lh-2">{product.name}</h2>
-                                            <h6 className="font-xsss fw-500 text-grey-500 ls-2">{product.price}</h6>
+                                            <Link to={`/product-details/${product._id}`}>
+                                                <img src={`${API}/product/photo/${product._id}`} style={{ height: '170px' }} alt="product-image" />
+                                                <h2 className="text-grey-800 fw-500 font-xsss lh-2">{product.name}</h2>
+                                                <h6 className="font-xsss fw-500 text-grey-500 ls-2">{product.price}</h6>
+                                            </Link>
                                         </div>
                                     </div>
-                                </Link>
-
-
-
-
-
-
-
-
-
+                                </div>
                             </div>
                         </div>
-                    </div>
 
+                    </SwiperSlide>
 
-
-                </SwiperSlide>
-
-
+                </>
 
             )
         })
+
         return (
             <div className="product-wrapper pt-7 pb-7">
                 <div className="container">
@@ -86,17 +99,21 @@ export class Products extends Component {
                                 autoplay={{
                                     delay: 2000,
                                     disableOnInteraction: false,
-                                  }}
-                               
-                                modules={[FreeMode, Pagination,Navigation,Autoplay]}
+                                }}
+
+                                modules={[FreeMode, Pagination, Navigation, Autoplay]}
                                 className="mySwiper"
                             >
                                 {ProductSlide}
                             </Swiper>
+
                         </div>
+                        {this.state.selectedProduct !== null ? <ProductModal handleClose={(result) => this.handleClose(result)} index={this.state.selectedProduct} product={this.props.products} /> : ''}
                     </div>
                 </div>
+
             </div>
+
 
 
         );

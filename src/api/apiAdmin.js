@@ -26,3 +26,6 @@ export const createProducts = (token, data) =>{
 export const getProducts =()=>{
     return axios.get(`${API}/product`)
 }
+export const getFilteredProducts = (data) =>{
+    return axios.post(`${API}/product/filter`,data)
+}

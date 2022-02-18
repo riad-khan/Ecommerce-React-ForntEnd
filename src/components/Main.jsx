@@ -16,6 +16,7 @@ import CreateProduct from "./Admin/product/CreateProduct.jsx";
 import ViewProducts from "./Admin/product/ViewProducts.jsx";
 import ProductDetails from "./Products/ProductDetails.jsx";
 import Shop from "./shop/Shop.jsx";
+import ProductModal from "./Home/ProductModal.jsx";
 
 
 
@@ -35,6 +36,7 @@ const Main = () => {
                 <Route path='/login' component={Login} />
                 <Route path='/sign-up' component={Register} />
                 <Route path='/product-details/:id' component={ProductDetails} />
+               
                 <Route path='/shop' component={Shop} />
                 <PrivateRoute path='/user/dashboard' >
                     <UserDashBoard />
