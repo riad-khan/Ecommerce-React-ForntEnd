@@ -8,7 +8,7 @@ import { fetchProducts } from '../../redux/actionCreators/productActionCreator'
 import { API } from '../../config/config';
 import { Link } from 'react-router-dom';
 import girl from '../../assets/images/girl-1.jpg'
-
+import ProductModal from '../Home/ProductModal'
 
 const mapStateToProps = state => {
     return {
@@ -31,6 +31,16 @@ export class Shop extends Component {
             category: [],
             price: [],
         },
+        selectedProduct: null,
+
+    }
+    productsModal = (index) => {
+
+
+        this.setState({
+            selectedProduct: index,
+            isOpen: true
+        })
 
     }
     componentDidMount() {
@@ -58,6 +68,13 @@ export class Shop extends Component {
         })
          this.props.fetchProducts(this.state.order, this.state.sortBy, this.state.limit, this.state.skip, newFilters);
         
+    }
+    handleClose = (result) => {
+        if (result === true) {
+            this.setState({
+                selectedProduct: null,
+            })
+        }
     }
     render() {
 
@@ -114,9 +131,12 @@ export class Shop extends Component {
                                         return (
                                             <div className="col-lg-4 col-md-6" key={i}>
                                                 <div className="card w-100 border-0 mt-4">
+                                                <a href="#" className="float-right mr-3" data-toggle="modal" onClick={this.productsModal.bind(this, i)} data-target="#ModalQuick"><i className="ti-eye font-xs text-grey-500"></i></a>
                                                     <div className="card-image w-100 p-0 text-center bg-greylight rounded-lg mb-2">
+                                                        
                                                         <Link to={`/product-details/${product._id}`}><img src={`${API}/product/photo/${product._id}`} alt="product-image" className="w-100 mt-0 mb-0 bg-greylight" /></Link>
                                                     </div>
+                                                    
                                                     <div className="card-body w-100 p-0 text-center">
                                                         <h2 className="mt-2 mb-1"><Link to={`/product-details/${product._id}`} className="text-black fw-600 font-xss lh-26">{product.name}</Link></h2>
                                                         <h6 className="font-xsss fw-500 text-grey-500 ls-2">{product.price} Tk</h6>
@@ -125,7 +145,7 @@ export class Shop extends Component {
                                             </div>
                                         )
                                     })}
-
+                                     {this.state.selectedProduct !== null ? <ProductModal handleClose={(result) => this.handleClose(result)} index={this.state.selectedProduct} product={this.props.products} /> : ''}
                                     <div className="col-lg-12 mt-5 text-center"><a href="#" className="fw-700 text-white font-xssss text-uppercase ls-3 lh-32 rounded-lg mt-3 text-center d-inline-block p-2 bg-current w150">Load More</a></div>
                                 </div>
 

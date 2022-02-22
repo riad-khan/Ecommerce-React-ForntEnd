@@ -74,7 +74,7 @@ class ProductModal extends Component {
                                         <form action="#" className="form--action mt-4 mb-3">
                                             <div className="product-action flex-row align-items-center">
                                                 <div className="quantity mr-3">
-                                                    <input type="number" className="quantity-input" name="qty" id="qty" min="1" />
+                                                    <input type="number" className="quantity-input" name="qty" id="qty" min="1" value='1' />
                                                     <div className="dec qtybutton">-</div>
                                                     <div className="inc qtybutton">+</div>
                                                 </div>
@@ -84,14 +84,14 @@ class ProductModal extends Component {
                                             </div>
                                         </form>
                                         <div className="clearfix"></div>
-                                        <ul className="product-feature-list mt-4">
-                                            <li className="w-50 lh-32 font-xsss text-grey-500 fw-500 float-left"><b className="text-grey-900"> Category : </b>Furniture</li>
-                                            <li className="w-50 lh-32 font-xsss text-grey-500 fw-500 float-left">Straight fit</li>
-                                            <li className="w-50 lh-32 font-xsss text-grey-500 fw-500 float-left"><b className="text-grey-900">SKU : </b> REF. LA-107</li>
-                                            <li className="w-50 lh-32 font-xsss text-grey-500 fw-500 float-left">Dry clean</li>
-                                            <li className="w-50 lh-32 font-xsss text-grey-500 fw-500 float-left"><b className="text-grey-900">Tags : </b>Design, Toys</li>
-                                            <li className="w-50 lh-32 font-xsss text-grey-500 fw-500 float-left">Cutton shirt</li>
-                                        </ul>
+                                        <ul className="product-feature-list mt-5">
+                                    <li className="w-50 lh-32 font-xsss text-grey-500 fw-500 float-left"><b className="text-grey-900"> Category : </b>{product.category.name}</li>
+                                  
+                              
+                                  
+                                   
+                                   
+                                </ul>
                                     </div>
                                 </div>
                             </div>

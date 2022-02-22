@@ -11,6 +11,7 @@
     "chart.js": "^3.7.0",
     "formik": "^2.2.9",
     "jwt-decode": "^3.1.2",
+    "noty": "^3.2.0-beta-deprecated",
     "react": "^17.0.1",
     "react-bootstrap-range-slider": "^3.0.3",
     "react-chartjs-2": "^4.0.1",

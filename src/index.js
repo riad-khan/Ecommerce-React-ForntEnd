@@ -11,6 +11,11 @@ import 'swiper/swiper-bundle.min.css'
 import 'swiper/swiper.min.css';
 
 
+//noty Js
+import Noty from 'noty';  
+import "../node_modules/noty/lib/noty.css";  
+import "../node_modules/noty/lib/themes/mint.css";  
+
 ReactDOM.render(
  
     <Provider store={store}>
