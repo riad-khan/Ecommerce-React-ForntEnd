@@ -1,17 +1,31 @@
 import React, { Component } from 'react';
 
 import { Link } from 'react-router-dom';
-import {isAuthenticated ,userInfo} from '../../helpers/auth';
+import { isAuthenticated, userInfo } from '../../helpers/auth';
 import Logo from '../../assets/meme.png'
+import CartModal from '../cart/cartModal';
+
+
 
 
 class Header extends Component {
-    
-  
- 
+    state = {
+        isOpen: null
+    }
+
+    toggleCart = () => {
+        this.setState({
+            isOpen: true
+        })
+    }
+    closeCart = value => {
+        this.setState({
+            isOpen: value
+        })
+    }
     render() {
         let loginUrl = {}
-        
+
         if (isAuthenticated() === true) {
             loginUrl = (
                 <li className="list-inline-item"><Link><i className="ti-user mr-2"></i>{userInfo().name}</Link></li>
@@ -22,7 +36,7 @@ class Header extends Component {
             )
 
         }
-       
+
 
         return (
             <div>
@@ -71,11 +85,12 @@ class Header extends Component {
                                     <select className="searchCat"> <option value="">All Categories</option><option value="151781441596 ">Fashion</option><option value="139119624252 ">- Men</option><option value="139118313532 ">- Women</option><option value="139360141372 ">Electronics</option><option value="152401903676 ">Home &amp; Garden</option><option value="138866720828 ">- Decor</option><option value="138866917436 ">- Lighting</option></select>
                                     <button className="border-0 bg-transparent pr-4 pl-4"><i className="ti-search font-xs lh-32 text-grey-500"></i></button>
                                 </form>
-                                <a href="#" data-toggle="modal" data-target="#ModalCart" className="float-right text-center mt-1 ml-4 text-grey-800 position-relative"><i className="ti-shopping-cart font-lg"></i><span className="font-xssss fw-500 d-block lh-1">Cart</span> <span className="icon-count bg-current">3</span></a>
+                                {/* <a href="#" data-toggle="modal" onClick={this.toggleCart} data-target="#ModalCart" className="float-right text-center mt-1 ml-4 text-grey-800 position-relative"><i className="ti-shopping-cart font-lg"></i><span className="font-xssss fw-500 d-block lh-1">Cart</span> <span className="icon-count bg-current">3</span></a> */}
+                                <Link to='/cart'  className="float-right text-center mt-1 ml-4 text-grey-800 position-relative"><i className="ti-shopping-cart font-lg"></i><span className="font-xssss fw-500 d-block lh-1">Cart</span> <span className="icon-count bg-current">3</span></Link>
                                 <a href="#" className="float-right text-center mt-1 ml-4 text-grey-800 position-relative"><i className="ti-heart font-lg"></i><span className="font-xssss fw-500 d-block lh-1">Saved</span> <span className="icon-count bg-current">2</span></a>
-                             { isAuthenticated() &&(
-                                 <Link to='/profile'  className="float-right d-none d-lg-block text-center mt-1 ml-4 text-grey-800"><i className="ti-user font-lg"></i><span className="font-xssss fw-500 d-block lh-1">Account</span></Link>
-                             )}
+                                {isAuthenticated() && (
+                                    <Link to='/profile' className="float-right d-none d-lg-block text-center mt-1 ml-4 text-grey-800"><i className="ti-user font-lg"></i><span className="font-xssss fw-500 d-block lh-1">Account</span></Link>
+                                )}
                                 <button className="navbar-toggler float-right mt-1" type="button" data-toggle="modal" data-target="#ModalCategores">
                                     <span className="navbar-toggler-icon"></span>
                                 </button>
@@ -328,7 +343,7 @@ class Header extends Component {
                         </div>
                     </div>
                 </div>
-
+                {this.state.isOpen === true ? <CartModal closeCart={(value) => this.closeCart(value)} /> : ''}
             </div>
         );
     }

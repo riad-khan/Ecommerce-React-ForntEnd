@@ -52,6 +52,7 @@ export class CreateProduct extends Component {
         this.setState({
             [event.target.name]: values
         })
+        
     }
     handleSubmit = e => {
         this.setState({

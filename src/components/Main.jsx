@@ -17,6 +17,10 @@ import ViewProducts from "./Admin/product/ViewProducts.jsx";
 import ProductDetails from "./Products/ProductDetails.jsx";
 import Shop from "./shop/Shop.jsx";
 import ProductModal from "./Home/ProductModal.jsx";
+import Cart from "./cart/Cart.jsx";
+import Checkout from "./order/Checkout.jsx";
+import CreateProfile from './user/CreateProfile'
+
 
 
 
@@ -36,13 +40,24 @@ const Main = () => {
                 <Route path='/login' component={Login} />
                 <Route path='/sign-up' component={Register} />
                 <Route path='/product-details/:id' component={ProductDetails} />
-               
+                
+                
+    
                 <Route path='/shop' component={Shop} />
                 <PrivateRoute path='/user/dashboard' >
                     <UserDashBoard />
                 </PrivateRoute>
+                <PrivateRoute path='/cart' >
+                    <Cart />
+                </PrivateRoute>
+                <PrivateRoute path='/checkout' >
+                    <Checkout />
+                </PrivateRoute>
                 <PrivateRoute path='/profile' >
                     <Profile />
+                </PrivateRoute>
+                <PrivateRoute path='/create-profile' >
+                   <CreateProfile />
                 </PrivateRoute>
                 <AdminRoutes path='/admin/dashboard' >
                     <AdminDashBoard />

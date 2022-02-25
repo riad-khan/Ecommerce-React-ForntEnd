@@ -14,3 +14,13 @@ export const CATEGORY_LOADING = "CATEGORY_LOADING";
 export const PRODUCT_FETCHED = "PRODUCT_FETCHED";
 export const PRODUCT_LOADING = "PRODUCT_LOADING";
 export const PRODUCT_FAILED = "PRODUCT_FAILED";
+
+//cart Action Types 
+
+export const CART_FETCHED = "CART_FETCHED";
+export const CART_LOADING = "CART_LOADING";
+export const CART_FAILED = "CART_FAILED";
+export const CART_DELETE = "CART_DELETE";
+
+export const PROFILE_FETCHED = "PROFILE FETCHED";
+export const PROFILE_UPDATE = "PROFILE_UPDATE";

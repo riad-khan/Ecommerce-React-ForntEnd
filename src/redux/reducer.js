@@ -21,6 +21,19 @@ const initialState = {
         },
         quantity: null,
     }],
+    cart: [{
+        id: null,
+        product: {
+            _id: null,
+            name: '',
+        },
+        price: 0,
+        user: {
+            _id: null,
+            name: '',
+        },
+        count: null,
+    }],
     authMsg: null,
     authError: null,
     authLoading: null,
@@ -28,7 +41,8 @@ const initialState = {
     categoryLoading: null,
     categoryError: null,
     error: null,
-    isLoading: null
+    isLoading: null,
+    profile: {}
 
 }
 
@@ -86,7 +100,27 @@ export const reducer = (state = initialState, action) => {
         case actionTypes.PRODUCT_LOADING:
             return {
                 ...state,
-                isLoading : action.payload
+                isLoading: action.payload
+            }
+        case actionTypes.CART_FETCHED:
+            return {
+                ...state,
+                cart: action.payload
+            }
+        case actionTypes.CART_LOADING:
+            return {
+                ...state,
+                isLoading: action.payload
+            }
+        case actionTypes.CART_FAILED:
+            return {
+                ...state,
+                error: action.payload
+            }
+        case actionTypes.PROFILE_FETCHED:
+            return {
+                ...state,
+                profile : action.payload
             }
         default:
             return state
