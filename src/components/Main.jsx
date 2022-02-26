@@ -20,6 +20,8 @@ import ProductModal from "./Home/ProductModal.jsx";
 import Cart from "./cart/Cart.jsx";
 import Checkout from "./order/Checkout.jsx";
 import CreateProfile from './user/CreateProfile'
+import Payment from "./order/Payment.jsx";
+
 
 
 
@@ -52,6 +54,9 @@ const Main = () => {
                 </PrivateRoute>
                 <PrivateRoute path='/checkout' >
                     <Checkout />
+                </PrivateRoute>
+                <PrivateRoute path='/payment-getway' >
+                    <Payment />
                 </PrivateRoute>
                 <PrivateRoute path='/profile' >
                     <Profile />

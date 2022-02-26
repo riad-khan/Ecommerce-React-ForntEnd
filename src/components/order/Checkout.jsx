@@ -18,12 +18,22 @@ const mapDispatchToProps = dispatch => {
     }
 }
 export class Checkout extends Component {
+    state ={
+        selectedMethod : 'cash',
+        
+    }
     componentDidMount() {
         const token = JSON.parse(localStorage.getItem('token'))
         this.props.fetchProfile(token);
         this.props.fetchCart(token);
     }
+    handleChange = e =>{
+      this.setState({
+          selectedMethod : e.target.value
+      })
+    }
     render() {
+        
         const data = this.props.profile;
         const subTotal = (this.props.cartItems.reduce((subTotal, currentItem) => subTotal = subTotal + currentItem.count * currentItem.price, 0))
         let shippingCost = null;
@@ -139,29 +149,21 @@ export class Checkout extends Component {
                                     </div>
                                     <div class="checkout-payment card border-0 mb-3 bg-greyblue p-5">
                                         <form action="#" class="payment-form">
+                                         
                                             <div class="payment-group mb-4">
                                                 <div class="payment-radio">
-                                                    <input type="radio" value="bank" name="payment-method" id="bank" checked="" />
-                                                    <label class="payment-label fw-600 text-grey-900 ml-2" for="cheque">Direct Bank Transfer</label>
-                                                </div>
-                                                <div class="payment-info" data-method="bank" >
-                                                    <p class="font-xsss text-grey-500 pl-4">Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order will not be shipped until the funds have cleared in our account.</p>
-                                                </div>
-                                            </div>
-                                            <div class="payment-group mb-4">
-                                                <div class="payment-radio">
-                                                    <input type="radio" value="cheque" name="payment-method" id="cheque" />
-                                                    <label class="payment-label fw-600 text-grey-90" for="cheque">
-                                                        Cheque payments
+                                                    <input type="radio" value="getway" checked={this.state.selectedMethod === 'getway'} onChange={this.handleChange} name="method" id="cheque" /> &nbsp;
+                                                    <label class="payment-label fw-600 text-grey-90" for="cheque"> 
+                                                        Payment with SSLcommerz
                                                     </label>
                                                 </div>
-                                                <div class="payment-info cheque hide-in-default" data-method="cheque" >
-                                                    <p class="font-xsss text-grey-500 pl-4">Please send a check to Store Name, Store Street, Store Town, Store State / County, Store Postcode.</p>
+                                                <div class="payment-info cheque hide-in-default" data-method="getway" >
+                                                    <p class="font-xsss text-grey-500 pl-4">Payment now with trusted and secured SSLcommerz getway</p>
                                                 </div>
                                             </div>
                                             <div class="payment-group mb-0">
                                                 <div class="payment-radio">
-                                                    <input type="radio" value="cash" name="payment-method" id="cash" />
+                                                    <input type="radio" value="cash" checked={this.state.selectedMethod === 'cash'} onChange={this.handleChange} name="method" id="cash" /> &nbsp;
                                                     <label class="payment-label fw-600 text-grey-90" for="cash">
                                                         Cash on Delivary
                                                     </label>
@@ -174,9 +176,20 @@ export class Checkout extends Component {
                                     </div>
                                     <div class="clearfix"></div>
 
-                                    <div class="card shadow-none border-0">
+                                   {this.state.selectedMethod === 'cash' ? 
+                                    (
+                                        <div class="card shadow-none border-0">
                                         <a href="#" class="btn btn-primary rounded-lg text-uppercase fw-600 ls-3">Place Order</a>
                                     </div>
+                                    )   :
+
+                                    (
+                                        <div class="card shadow-none border-0">
+                                        <Link to='/payment-getway' class="btn btn-primary rounded-lg text-uppercase fw-600 ls-3">Payment Now</Link>
+                                    </div>
+                                    )
+                                
+                                }
 
 
 

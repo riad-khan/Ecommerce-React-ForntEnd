@@ -72,33 +72,10 @@ export class ShopSideBar extends Component {
                     </div>
 
 
-                    <div className="bg-greyblue side-wrap rounded-lg p-4 mb-4">
-                        <div className="form-group mb-0">
-                            <label htmlFor="Search" className="fw-600 text-grey-900">Color</label>
-                        </div>
-                        <ul className="list-inline mt-2">
-                            <li className="list-inline-item"><a href="#" className="btn-round-sm" style={{ backgroundColor: '#ff3b30' }}></a></li>
-
-                        </ul>
-
-                    </div>
+                  
 
 
-                    <div className="bg-greyblue side-wrap rounded-lg p-4 mb-4">
-                        <div className="form-group mb-0">
-                            <label htmlFor="Search" className="fw-600 text-grey-900">Size</label>
-                        </div>
-                        <ul className="list-inline mt-2">
-                            <li className="list-inline-item mr-1"><a href="#" className="btn-round-sm lh-30 border-light-md fw-600 font-xsss border-size-md text-grey-800 ">XS</a></li>
-                            <li className="list-inline-item mr-1"><a href="#" className="btn-round-sm lh-30 border-light-md fw-600 font-xsss border-size-md text-grey-800 ">S</a></li>
-                            <li className="list-inline-item mr-1"><a href="#" className="btn-round-sm lh-30 border-light-md fw-600 font-xsss border-size-md text-grey-800 ">SM</a></li>
-                            <li className="list-inline-item mr-1"><a href="#" className="btn-round-sm lh-30 border-light-md fw-600 font-xsss border-size-md text-grey-800 ">M</a></li>
-                            <li className="list-inline-item mr-1"><a href="#" className="btn-round-sm lh-30 border-light-md fw-600 font-xsss border-size-md text-grey-800 ">L</a></li>
-                            <li className="list-inline-item mr-1"><a href="#" className="btn-round-sm lh-30 border-light-md fw-600 font-xsss border-size-md text-grey-800 ">XL</a></li>
-
-                        </ul>
-
-                    </div>
+               
 
                             <PriceFilter handlePrice={price =>this.props.handlePrice(price)} />
 
